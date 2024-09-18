@@ -1,15 +1,20 @@
 projects:
   bucketlisttracker:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/bucketlisttracker/build/schema.graphql
     includes:
-      - src/graphql/**/*.js
+      - src/graphql/**/*.ts
     excludes:
       - ./amplify/**
+      - src/API.ts
+      - src/graphql/API.ts
     extensions:
       amplify:
-        codeGenTarget: javascript
-        generatedFileName: ''
+        codeGenTarget: typescript
+        generatedFileName: src/graphql/API.ts
         docsFilePath: src/graphql
+        region: eu-west-2
+        apiId: null
+        maxDepth: 2
 extensions:
   amplify:
     version: 3
