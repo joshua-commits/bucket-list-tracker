@@ -2,7 +2,7 @@ import {  useEffect } from 'react';
 import { Amplify } from 'aws-amplify';
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
 
-import { generateClient } from 'aws-amplify/api';
+import { generateClient } from '@aws-amplify/api';
 import config from './amplifyconfiguration.json';
 
 import { createWish} from './graphql/mutations';
