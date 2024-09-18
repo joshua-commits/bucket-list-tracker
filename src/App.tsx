@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {  useEffect } from 'react';
+import { Amplify } from 'aws-amplify';
+import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
 
-function App() {
-  const [count, setCount] = useState(0)
+import { generateClient } from 'aws-amplify/api';
+import config from './amplifyconfiguration.json';
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+import { createWish} from './graphql/mutations';
+import { listWishes } from './graphql/queries';
+
+import '@aws-amplify/ui-react/styles.css';
+import awsmobile from './aws-exports';
+
+Amplify.configure(config);
+Amplify.configure(awsmobile);
+
+const client = generateClient();
+
+const addTodo = async () => {
+  try {
+      await client.graphql({
+      query: createWish,
+      variables: {
+        input: {
+          name: 'My second wish',
+          completed: false
+        }
+      }
+    })
+    
+  }
+  catch(err){
+    console.log(err)
+  }
 }
 
-export default App
+const result = await client.graphql({query: listWishes})
+
+function App() {
+
+
+  useEffect(() => {
+    addTodo()
+  }, []);
+
+  return (
+    <Authenticator>
+      {({signOut}) => (
+        <>
+          <div>Hello World</div>
+          <button type='button' onClick={signOut}> Sign Out</button>
+          {console.log(result)}
+        </>
+      )}
+
+    </Authenticator>
+   
+  )
+}
+const AuthenticatedApp = withAuthenticator(App);
+
+export default AuthenticatedApp
