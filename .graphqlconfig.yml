@@ -6,11 +6,15 @@ projects:
     excludes:
       - ./amplify/**
       - src/API.ts
+      - src/graphql/API.ts
     extensions:
       amplify:
         codeGenTarget: typescript
-        generatedFileName: src/API.ts
+        generatedFileName: src/graphql/API.ts
         docsFilePath: src/graphql
         region: eu-west-2
         apiId: null
         maxDepth: 2
+extensions:
+  amplify:
+    version: 3
