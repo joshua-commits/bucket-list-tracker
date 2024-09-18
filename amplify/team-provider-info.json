@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bucketlisttracker-staging-27a62-authRole",
+      "UnauthRoleArn": "arn:aws:iam::339712927361:role/amplify-bucketlisttracker-staging-27a62-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::339712927361:role/amplify-bucketlisttracker-staging-27a62-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-bucketlisttracker-staging-27a62-deployment",
+      "UnauthRoleName": "amplify-bucketlisttracker-staging-27a62-unauthRole",
+      "StackName": "amplify-bucketlisttracker-staging-27a62",
+      "StackId": "arn:aws:cloudformation:eu-west-2:339712927361:stack/amplify-bucketlisttracker-staging-27a62/282577a0-75b1-11ef-8df4-065a45ec1bc5",
+      "AmplifyAppId": "d3tqlmugnpzjb5"
+    }
+  }
+}
