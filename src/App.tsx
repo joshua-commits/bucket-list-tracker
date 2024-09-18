@@ -34,7 +34,14 @@ const addTodo = async () => {
   }
 }
 
-const result = await client.graphql({query: listWishes})
+async function fetchWishes() {
+  try {
+    const result = await client.graphql({ query: listWishes });
+    return result;
+  } catch (error) {
+    console.error("Error fetching wishes:", error);
+  }
+}
 
 function App() {
 
@@ -43,13 +50,20 @@ function App() {
     addTodo()
   }, []);
 
+  useEffect(() => {
+    fetchWishes().then(result => {
+      if (result) {
+        console.log("Fetched wishes:", result);
+      }
+    });
+  }, []);
+
   return (
     <Authenticator>
       {({signOut}) => (
         <>
           <div>Hello World</div>
           <button type='button' onClick={signOut}> Sign Out</button>
-          {console.log(result)}
         </>
       )}
 
