@@ -44,6 +44,7 @@ const addWish = async () => {
             }
             }
         })
+        alert("Your wish has been successfully added!")
     }
     catch(err){
         console.log(err)

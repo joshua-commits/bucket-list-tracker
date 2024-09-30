@@ -5,6 +5,7 @@ import { generateClient } from '@aws-amplify/api';
 
 
 const client = generateClient();
+let value = "";
 
 const getWishes = async() => {
     try {
@@ -20,7 +21,7 @@ const Display = () => {
     useEffect(() => {
         getWishes().then(result => {
         if (result) {
-            console.log("Fetched wishes:", result.data.listWishes.items);
+            value = "Fetched wishes:" + JSON.stringify(result.data.listWishes.items);
         }
         });
         }, []
@@ -29,7 +30,7 @@ const Display = () => {
     <div>
         <h2>Current Wishes</h2>
         <div>
-            
+            {value}
         </div>
     </div>
   )
