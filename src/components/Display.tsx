@@ -1,16 +1,16 @@
-import  { useEffect } from 'react';
+import  { useEffect, useState } from 'react';
 import { listWishes } from '../graphql/queries';
 import { generateClient } from '@aws-amplify/api';
-
+import {WishFormState} from './Wishes'
 
 
 const client = generateClient();
-let value = "";
+
 
 const getWishes = async() => {
     try {
-        const wishes = await client.graphql({query: listWishes})
-        return wishes
+        const results = await client.graphql({query: listWishes})
+        return results
     } catch (error) {
         console.log(error);
     }
@@ -18,10 +18,14 @@ const getWishes = async() => {
 }
 
 const Display = () => {
+    const[wishes, setWishes] = useState<WishFormState[]>([]); 
+
     useEffect(() => {
         getWishes().then(result => {
         if (result) {
-            value = "Fetched wishes:" + JSON.stringify(result.data.listWishes.items);
+            const wish = result.data.listWishes.items as WishFormState[]
+            setWishes(wish);
+           
         }
         });
         }, []
@@ -30,10 +34,13 @@ const Display = () => {
     <div>
         <h2>Current Wishes</h2>
         <div>
-            {value}
+            {wishes.map(wish => (
+                <div key={wish.id}>{wish.name}</div>
+            ))}
         </div>
     </div>
   )
 }
+
 
 export default Display

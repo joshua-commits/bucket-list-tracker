@@ -8,17 +8,18 @@ Amplify.configure(config);
 
 
 const client = generateClient();
-interface WishFormState {
-    wish: string,
-    desc: string,
+export interface WishFormState {
+    id?: string,
+    name: string,
+    description: string,
     imagePath?: string,
     completed: boolean
 }
 
 const Wishes = () => {
   const [val, setVal] = useState<WishFormState>({
-    wish: "",
-    desc: "",
+    name: "",
+    description: "",
     completed: false
   });
 
@@ -38,8 +39,8 @@ const addWish = async () => {
             query: createWish,
             variables: {
             input: {
-                name: val.wish,
-                description: val.desc,
+                name: val.name,
+                description: val.description,
                 completed: val.completed
             }
             }
@@ -60,7 +61,7 @@ const addWish = async () => {
                 placeholder="Enter your wish" 
                 type="text"
                 name="wish"
-                value={val.wish}
+                value={val.name}
                 onChange={handleChange}
                 />
             </span>
@@ -69,7 +70,7 @@ const addWish = async () => {
                 placeholder="Wish Description" 
                 type="text"
                 name="desc"
-                value={val.desc}
+                value={val.description}
                 onChange={handleChange}
                 />
         </span>
