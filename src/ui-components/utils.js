@@ -3,6 +3,8 @@
  * Please refrain from making any modifications to this file.              *
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
+
+/* eslint-disable */
 import * as React from "react";
 import { fetchUserAttributes, signOut } from "aws-amplify/auth";
 import { DataStore } from "aws-amplify/datastore";
@@ -94,7 +96,7 @@ export const useNavigateAction = (options) => {
         };
       default:
         return () => {
-          
+          // eslint-disable-next-line no-console
           console.warn(
             'Please provide a valid navigate type. Available types are "url", "anchor" and "reload".'
           );

@@ -6,6 +6,7 @@
 
 import * as React from "react";
 import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { Wish } from "../graphql/API.ts";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -45,7 +46,7 @@ export declare type WishUpdateFormProps = React.PropsWithChildren<{
     overrides?: WishUpdateFormOverridesProps | undefined | null;
 } & {
     id?: string;
-    wish?: any;
+    wish?: Wish;
     onSubmit?: (fields: WishUpdateFormInputValues) => WishUpdateFormInputValues;
     onSuccess?: (fields: WishUpdateFormInputValues) => void;
     onError?: (fields: WishUpdateFormInputValues, errorMessage: string) => void;
