@@ -9,7 +9,7 @@ Amplify.configure(config);
 
 const client = generateClient();
 export interface WishFormState {
-    id?: string,
+    id: string,
     name: string,
     description: string,
     imagePath?: string,
@@ -18,6 +18,7 @@ export interface WishFormState {
 
 const Wishes = () => {
   const [val, setVal] = useState<WishFormState>({
+    id: "",
     name: "",
     description: "",
     completed: false
@@ -56,7 +57,7 @@ const addWish = async () => {
 
   return (
     <section className="container">
-            <span>
+            <div>
                 <input 
                 placeholder="Enter your wish" 
                 type="text"
@@ -64,8 +65,8 @@ const addWish = async () => {
                 value={val.name}
                 onChange={handleChange}
                 />
-            </span>
-            <span>
+            </div>
+            <div>
                 <input 
                 placeholder="Wish Description" 
                 type="text"
@@ -73,19 +74,17 @@ const addWish = async () => {
                 value={val.description}
                 onChange={handleChange}
                 />
-        </span>
-        <span>
+        </div>
+        <div>
                 <input 
                 placeholder="Enter your wish" 
                 type="file"
                 name="file"
                 accept='image/png'
                 />
-        </span>
-        
-        <span>
-            <button type="button" onClick={addWish}> Add a Wish</button>
-        </span>
+        </div>
+
+        <button type="button" onClick={addWish}> Add a Wish</button>
     </section>
   )
 }

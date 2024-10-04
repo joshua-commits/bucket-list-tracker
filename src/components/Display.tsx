@@ -1,11 +1,14 @@
 import  { useEffect, useState } from 'react';
 import { listWishes } from '../graphql/queries';
+import { updateWish } from '../graphql/mutations';
 import { generateClient } from '@aws-amplify/api';
-import {WishFormState} from './Wishes'
-import '../App.css'
+import {WishFormState} from './Wishes';
+
 
 
 const client = generateClient();
+
+
 
 
 const getWishes = async() => {
@@ -18,8 +21,33 @@ const getWishes = async() => {
 
 }
 
+
 const Display = () => {
     const[wishes, setWishes] = useState<WishFormState[]>([]); 
+
+    const handleChange = async(wish:WishFormState) =>{
+        const updatedWish = {...wish, completed: !wish.completed};
+    
+        setWishes(
+            wishes.map(w => w.id === wish.id ? updatedWish: w)
+        );
+    
+        try {
+    
+             await client.graphql({
+                query: updateWish,
+                variables: { 
+                    input: {
+                        id: wish.id,
+                        completed: updatedWish.completed,
+                }}
+            });
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
 
     useEffect(() => {
         getWishes().then(result => {
@@ -37,7 +65,16 @@ const Display = () => {
         <div>
             <ul>
                 {wishes.map(wish => (
-                    <li key={wish.id}>{wish.name}</li>
+                    <li className='list' key={wish.id}>
+                        <span className='wishName'>{wish.name}</span>
+                        <span className='wishDesc'>{wish.description}</span>
+                        <input type='checkbox' 
+                            checked={wish.completed}
+                            placeholder='false'
+                            onChange={() => handleChange(wish)}
+                        />
+                    </li>
+                    
                 ))}
             </ul>
         </div>

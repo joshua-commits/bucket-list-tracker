@@ -1,17 +1,20 @@
 import { Amplify } from 'aws-amplify';
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import awsmobile from './aws-exports';
 
-
-
+import Display from './components/Display';
 import Wishes from './components/Wishes';
+
+Amplify.configure(awsmobile);
+
 import './App.css'
 
 
-import '@aws-amplify/ui-react/styles.css';
-import awsmobile from './aws-exports';
-import Display from './components/Display';
 
-Amplify.configure(awsmobile);
+
+
+
 
 function App() {
 
