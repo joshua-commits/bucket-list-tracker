@@ -55,12 +55,12 @@ const addWish = async () => {
   
 
   return (
-    <div className="container">
+    <section className="container">
             <span>
                 <input 
                 placeholder="Enter your wish" 
                 type="text"
-                name="wish"
+                name="name"
                 value={val.name}
                 onChange={handleChange}
                 />
@@ -69,7 +69,7 @@ const addWish = async () => {
                 <input 
                 placeholder="Wish Description" 
                 type="text"
-                name="desc"
+                name="description"
                 value={val.description}
                 onChange={handleChange}
                 />
@@ -86,7 +86,7 @@ const addWish = async () => {
         <span>
             <button type="button" onClick={addWish}> Add a Wish</button>
         </span>
-    </div>
+    </section>
   )
 }
 

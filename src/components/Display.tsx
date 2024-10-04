@@ -2,6 +2,7 @@ import  { useEffect, useState } from 'react';
 import { listWishes } from '../graphql/queries';
 import { generateClient } from '@aws-amplify/api';
 import {WishFormState} from './Wishes'
+import '../App.css'
 
 
 const client = generateClient();
@@ -24,21 +25,23 @@ const Display = () => {
         getWishes().then(result => {
         if (result) {
             const wish = result.data.listWishes.items as WishFormState[]
-            setWishes(wish);
-           
+            setWishes(wish); 
+            // add in subscription later 
         }
         });
         }, []
     );
   return (
-    <div>
+    <section>
         <h2>Current Wishes</h2>
         <div>
-            {wishes.map(wish => (
-                <div key={wish.id}>{wish.name}</div>
-            ))}
+            <ul>
+                {wishes.map(wish => (
+                    <li key={wish.id}>{wish.name}</li>
+                ))}
+            </ul>
         </div>
-    </div>
+    </section>
   )
 }
 

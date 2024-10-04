@@ -13,52 +13,25 @@ import Display from './components/Display';
 
 Amplify.configure(awsmobile);
 
-// const client = generateClient();
-
-// const addTodo = async () => {
-//   try {
-//       await client.graphql({
-//       query: createWish,
-//       variables: {
-//         input: {
-//           name: 'My second wish',
-//           completed: false
-//         }
-//       }
-//     })
-    
-//   }
-//   catch(err){
-//     console.log(err)
-//   }
-// }
-
-
-
 function App() {
-
-
-  // useEffect(() => {
-  //   addTodo()
-  // }, []);
-
-  // useEffect(() => {
-  //   fetchWishes().then(result => {
-  //     if (result) {
-  //       console.log("Fetched wishes:", result);
-  //     }
-  //   });
-  // }, []);
 
   return (
     <Authenticator>
       {({signOut}) => (
-        <>
-          <h1>Bucket List Tracker</h1>
-          <Wishes/>
-          <Display/>
-          <button type='button' onClick={signOut}> Sign Out</button>
-        </>
+        <body>
+          <header>
+            <h1>Bucket List Tracker</h1>
+          </header>
+          <main>
+            <Wishes/>
+            <Display/>
+          </main>
+          
+          <footer>
+            <button type='button' onClick={signOut}> Sign Out</button>
+          </footer>
+          
+        </body>
       )}
 
     </Authenticator>
