@@ -26,6 +26,7 @@ const Wishes = () => {
 
 const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
 const {name, value} = e.target;
+console.log(e.target)
 
 setVal((prevVal) => ({
     ...prevVal,
@@ -36,7 +37,7 @@ setVal((prevVal) => ({
 
 const addWish = async () => {
     try {
-        await client.graphql({
+            client.graphql({
             query: createWish,
             variables: {
             input: {
@@ -46,7 +47,7 @@ const addWish = async () => {
             }
             }
         })
-        alert("Your wish has been successfully added!")
+        alert("Your wish has been successfully added!") //change UI for this
     }
     catch(err){
         console.log(err)
@@ -64,6 +65,7 @@ const addWish = async () => {
                 name="name"
                 value={val.name}
                 onChange={handleChange}
+                required
                 />
             </div>
             <div>
@@ -73,6 +75,7 @@ const addWish = async () => {
                 name="description"
                 value={val.description}
                 onChange={handleChange}
+                required
                 />
         </div>
         <div>
@@ -81,6 +84,7 @@ const addWish = async () => {
                 type="file"
                 name="file"
                 accept='image/png'
+                onChange={handleChange}
                 />
         </div>
 

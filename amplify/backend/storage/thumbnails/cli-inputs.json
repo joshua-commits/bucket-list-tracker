@@ -1,0 +1,14 @@
+{
+  "resourceName": "thumbnails",
+  "policyUUID": "295654c0",
+  "bucketName": "wishthumbnails",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Trigger4b6f8d3c",
+  "groupAccess": {}
+}

@@ -29,12 +29,12 @@ const Display = () => {
         const updatedWish = {...wish, completed: !wish.completed};
     
         setWishes(
-            wishes.map(w => w.id === wish.id ? updatedWish: w)
+            wishes.map(w => w.id === wish.id ? updatedWish: w) //local update
         );
     
         try {
     
-             await client.graphql({
+             await client.graphql({ //cloud update
                 query: updateWish,
                 variables: { 
                     input: {
@@ -62,22 +62,20 @@ const Display = () => {
   return (
     <section>
         <h2>Current Wishes</h2>
-        <div>
-            <ul>
-                {wishes.map(wish => (
-                    <li className='list' key={wish.id}>
-                        <span className='wishName'>{wish.name}</span>
-                        <span className='wishDesc'>{wish.description}</span>
-                        <input type='checkbox' 
-                            checked={wish.completed}
-                            placeholder='false'
-                            onChange={() => handleChange(wish)}
-                        />
-                    </li>
-                    
-                ))}
-            </ul>
-        </div>
+        <ul>
+            {wishes.map(wish => (
+                <li className='list' key={wish.id}>
+                    <span className='wishName'>{wish.name}</span>
+                    <span className='wishDesc'>{wish.description}</span>
+                    <input type='checkbox' 
+                        checked={wish.completed}
+                        placeholder='false'
+                        onChange={() => handleChange(wish)}
+                    />
+                </li>
+                
+            ))}
+        </ul>
     </section>
   )
 }
