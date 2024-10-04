@@ -9,7 +9,7 @@ Amplify.configure(config);
 
 const client = generateClient();
 export interface WishFormState {
-    id?: string,
+    id: string,
     name: string,
     description: string,
     imagePath?: string,
@@ -18,6 +18,7 @@ export interface WishFormState {
 
 const Wishes = () => {
   const [val, setVal] = useState<WishFormState>({
+    id: "",
     name: "",
     description: "",
     completed: false
@@ -25,6 +26,7 @@ const Wishes = () => {
 
 const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
 const {name, value} = e.target;
+console.log(e.target)
 
 setVal((prevVal) => ({
     ...prevVal,
@@ -35,7 +37,7 @@ setVal((prevVal) => ({
 
 const addWish = async () => {
     try {
-        await client.graphql({
+            client.graphql({
             query: createWish,
             variables: {
             input: {
@@ -45,7 +47,7 @@ const addWish = async () => {
             }
             }
         })
-        alert("Your wish has been successfully added!")
+        alert("Your wish has been successfully added!") //change UI for this
     }
     catch(err){
         console.log(err)
@@ -55,38 +57,39 @@ const addWish = async () => {
   
 
   return (
-    <div className="container">
-            <span>
+    <section className="container">
+            <div>
                 <input 
                 placeholder="Enter your wish" 
                 type="text"
-                name="wish"
+                name="name"
                 value={val.name}
                 onChange={handleChange}
+                required
                 />
-            </span>
-            <span>
+            </div>
+            <div>
                 <input 
                 placeholder="Wish Description" 
                 type="text"
-                name="desc"
+                name="description"
                 value={val.description}
                 onChange={handleChange}
+                required
                 />
-        </span>
-        <span>
+        </div>
+        <div>
                 <input 
                 placeholder="Enter your wish" 
                 type="file"
                 name="file"
                 accept='image/png'
+                onChange={handleChange}
                 />
-        </span>
-        
-        <span>
-            <button type="button" onClick={addWish}> Add a Wish</button>
-        </span>
-    </div>
+        </div>
+
+        <button type="button" onClick={addWish}> Add a Wish</button>
+    </section>
   )
 }
 
