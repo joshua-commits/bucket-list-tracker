@@ -6,6 +6,7 @@ import config from '../amplifyconfiguration.json';
 import { createWish} from '../graphql/mutations';
 Amplify.configure(config);
 
+import '../css/Wishes.css'
 
 const client = generateClient();
 export interface WishFormState {
@@ -57,7 +58,7 @@ const addWish = async () => {
   
 
   return (
-    <section className="container">
+    <section className="wish">
             <div>
                 <input 
                 placeholder="Enter your wish" 

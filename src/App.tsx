@@ -8,7 +8,7 @@ import Wishes from './components/Wishes';
 
 Amplify.configure(awsmobile);
 
-import './App.css'
+import './css/App.css'
 
 
 
@@ -22,8 +22,8 @@ function App() {
     <Authenticator>
       {({signOut}) => (
         <body>
-          <header>
-            <h1>Bucket List Tracker</h1>
+          <header className='wish-title'>
+            <h1 >Bucket List Tracker</h1>
           </header>
           <main>
             <Wishes/>
