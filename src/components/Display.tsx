@@ -60,8 +60,10 @@ const Display = () => {
         }, []
     );
   return (
+    <>
+   
+    <h2 >Current Wishes</h2>
     <section>
-        <h2 className='wish-title'>Current Wishes</h2>
         <ul>
             {wishes.map(wish => (
                 <li className='list' key={wish.id}>
@@ -77,6 +79,7 @@ const Display = () => {
             ))}
         </ul>
     </section>
+    </>
   )
 }
 
