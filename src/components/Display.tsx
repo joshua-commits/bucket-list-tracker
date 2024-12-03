@@ -3,7 +3,7 @@ import { listWishes } from '../graphql/queries';
 import { updateWish } from '../graphql/mutations';
 import { generateClient } from '@aws-amplify/api';
 import {WishFormState} from './Wishes';
-
+import '../css/Display.css';
 
 
 const client = generateClient();
@@ -61,7 +61,7 @@ const Display = () => {
     );
   return (
     <section>
-        <h2>Current Wishes</h2>
+        <h2 className='wish-title'>Current Wishes</h2>
         <ul>
             {wishes.map(wish => (
                 <li className='list' key={wish.id}>

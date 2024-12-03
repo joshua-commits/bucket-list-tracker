@@ -57,7 +57,7 @@ const addWish = async () => {
   
 
   return (
-    <section className="container">
+    <section className="wish">
             <div>
                 <input 
                 placeholder="Enter your wish" 
