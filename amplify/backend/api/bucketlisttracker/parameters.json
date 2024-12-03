@@ -2,5 +2,5 @@
   "AppSyncApiName": "bucketlisttracker",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2024-09-30T13:22:20.156Z"
+  "AuthModeLastUpdated": "2024-12-03T12:32:53.354Z"
 }
