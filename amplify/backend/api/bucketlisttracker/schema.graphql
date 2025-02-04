@@ -9,3 +9,7 @@ type Wish @model {
   imagePath: String
   completed: Boolean!
 }
+
+type Subscription {
+  onCreateWish: Wish @aws_subscribe(mutations: ["createWish"])
+}
