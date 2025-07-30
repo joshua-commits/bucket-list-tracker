@@ -18,7 +18,6 @@ This application is a work-in-progress, and I continue to refine it as I learn a
 
 
 ## Usage
-The application is deployed [here](https://main.d3tqlmugnpzjb5.amplifyapp.com/).
 
 If you want to run it on your local machine, follow these steps:
 
